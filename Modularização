@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+
+void cadastrar(int codigo[], char nome[][15], int *total) {
+    if (*total == 5) {
+        printf("\nCadastro cheio!\n");
+        return;
+    }
+
+    printf("\nDigite o codigo: ");
+    scanf("%d", &codigo[*total]);
+    getchar();
+
+    printf("Digite o nome: ");
+    fgets(nome[*total], 15, stdin);
+
+    (*total)++;
+    printf("\nCadastro realizado com sucesso!\n");
+}
+
+void consultar(int codigo[], char nome[][15], int total) {
+    int busca;
+    int achou = 0;
+
+    printf("\nDigite o codigo para consultar: ");
+    scanf("%d", &busca);
+
+    for (int i = 0; i < total; i++) {
+        if (codigo[i] == busca) {
+            printf("\nCodigo: %d", codigo[i]);
+            printf("\nNome: %s", nome[i]);
+            achou = 1;
+            break;
+        }
+    }
+
+    if (achou == 0) {
+        printf("\nRegistro nao encontrado!\n");
+    }
+}
+
+void listar(int codigo[], char nome[][15], int total) {
+    if (total == 0) {
+        printf("\nNenhum registro cadastrado!\n");
+        return;
+    }
+
+    for (int i = 0; i < total; i++) {
+        printf("\nCodigo: %d - Nome: %s", codigo[i], nome[i]);
+    }
+}
+
+void alterar(int codigo[], char nome[][15], int total) {
+    int busca;
+    int achou = 0;
+
+    printf("\nDigite o codigo para alterar: ");
+    scanf("%d", &busca);
+
+    for (int i = 0; i < total; i++) {
+        if (codigo[i] ==
